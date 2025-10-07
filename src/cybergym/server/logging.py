@@ -1,15 +1,31 @@
 import json
+import sys
+
+import logging
 from pathlib import Path
 from datetime import datetime, timezone
 from typing import Optional, Dict, Any
 
-
 # Pseudo-Singleton
 _artifact_logger: Optional['ArtifactLogger'] = None
+_logger = logging.getLogger(__name__)
 
 
 def get_artifact_logger() -> Optional['ArtifactLogger']:
     return _artifact_logger
+
+
+def get_logger():
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.StreamHandler(sys.stdout),
+            logging.FileHandler('cybergym_server.log')
+        ]
+    )
+
+    return _logger
 
 
 class ArtifactLogger:
@@ -62,4 +78,3 @@ class ArtifactLogger:
         # Factory Method that also updates global instance
         global _artifact_logger
         _artifact_logger = cls(artifact_dir)
-
