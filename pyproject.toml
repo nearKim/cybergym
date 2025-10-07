@@ -36,6 +36,11 @@ server = [
     "sqlalchemy>=2.0.0",
     "python-multipart>=0.0.20",
 ]
+custom = [
+    "python-dotenv>=1.0.0",
+    "pydantic-settings>=2.0.0",
+]
+
 
 [project.urls]
 "Homepage" = "https://github.com/sunblaze-ucb/cybergym"

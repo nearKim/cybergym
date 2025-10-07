@@ -36,8 +36,8 @@ class PoCRecord(Base):
             "poc_length": self.poc_length,
             "vul_exit_code": self.vul_exit_code,
             "fix_exit_code": self.fix_exit_code,
-            "created_at": self.created_at,
-            "updated_at": self.updated_at,
+            "created_at": self.created_at.isoformat() if self.created_at else None,
+            "updated_at": self.updated_at.isoformat() if self.updated_at else None,
         }
 
 
