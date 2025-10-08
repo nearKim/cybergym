@@ -4,10 +4,16 @@ from typing import Optional
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+try:
+    from cybergym.server.env_utils import ensure_server_env
+    env_path = ensure_server_env()
+except:
+    env_path = Path('.env')
+
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file='.env',
+        env_file=str(env_path),
         env_file_encoding='utf-8',
         case_sensitive=False,
         extra='ignore'

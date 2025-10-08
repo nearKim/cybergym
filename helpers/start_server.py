@@ -2,9 +2,9 @@
 import os
 from subprocess import run
 from argparse import ArgumentParser
-from dotenv import load_dotenv
+from env_loader import ensure_env_loaded
 
-load_dotenv()
+ensure_env_loaded()
 e = os.getenv
 
 def main():

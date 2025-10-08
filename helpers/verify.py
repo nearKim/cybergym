@@ -4,9 +4,9 @@ import sys
 import json
 from pathlib import Path
 from subprocess import run
-from dotenv import load_dotenv
+from env_loader import ensure_env_loaded
 
-load_dotenv()
+ensure_env_loaded()
 e = os.getenv
 
 
