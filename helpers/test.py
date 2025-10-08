@@ -3,11 +3,10 @@ import logging
 import os
 import sys
 from pathlib import Path
-from subprocess import run, CalledProcessError, PIPE
-from typing import List, Optional
+from subprocess import run, CalledProcessError
+from typing import List
 
-from dotenv import load_dotenv
-
+from env_loader import ensure_env_loaded
 from exceptions import (
     ConfigurationError,
     TaskExecutionError,
@@ -22,7 +21,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-load_dotenv()
+ensure_env_loaded()
 e = os.getenv
 
 

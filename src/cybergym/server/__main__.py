@@ -266,6 +266,15 @@ app.include_router(private_router)
 if __name__ == "__main__":
     try:
         logger.info("Starting CyberGym Server initialization...")
+        
+        # Ensure environment is properly loaded
+        from cybergym.server.env_utils import ensure_server_env
+        try:
+            env_path = ensure_server_env()
+            logger.info(f"Environment loaded from: {env_path}")
+        except FileNotFoundError as e:
+            logger.error(f"Failed to load environment: {e}")
+            sys.exit(1)
 
         parser = argparse.ArgumentParser(description="CyberGym Server")
         parser.add_argument("--host", type=str, help="Host to run the server on")
@@ -277,7 +286,7 @@ if __name__ == "__main__":
 
         args = parser.parse_args()
 
-        logger.info("Loading configuration from .env file...")
+        logger.info("Configuration loaded successfully")
         logger.info(
             f"Server: {settings.server_ip}:{settings.server_port}, DB: {settings.db_path}, Logs: {settings.log_dir}"
         )
